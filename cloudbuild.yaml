@@ -3,7 +3,7 @@ steps:
     args:
       [
         'build',
-        '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/sales-prediction-saurabh/cloud-run-app:$SHORT_SHA',
+        '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/sales-prediction-saurabh/cloud-run-app-saurabh:$SHORT_SHA',
         '.'
       ]
     id: 'Build Docker image'
@@ -12,7 +12,7 @@ steps:
     args:
       [
         'push',
-        'us-central1-docker.pkg.dev/$PROJECT_ID/sales-prediction-saurabh/cloud-run-app:$SHORT_SHA'
+        'us-central1-docker.pkg.dev/$PROJECT_ID/sales-prediction-saurabh/cloud-run-app-saurabh:$SHORT_SHA'
       ]
     id: 'Push to Artifact Registry'
 
@@ -21,7 +21,7 @@ steps:
     args:
       [
         'run', 'deploy', 'cloud-run-app',
-        '--image', 'us-central1-docker.pkg.dev/$PROJECT_ID/sales-prediction-saurabh/cloud-run-app:$SHORT_SHA',
+        '--image', 'us-central1-docker.pkg.dev/$PROJECT_ID/sales-prediction-saurabh/cloud-run-app-saurabh:$SHORT_SHA',
         '--region', 'us-central1',
         '--platform', 'managed',
         '--allow-unauthenticated',
@@ -33,5 +33,5 @@ options:
   defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
 
 substitutions:
-  _SERVICE_NAME: cloud-run-app
+  _SERVICE_NAME: cloud-run-app-saurabh
 

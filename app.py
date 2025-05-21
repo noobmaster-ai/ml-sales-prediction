@@ -7,7 +7,7 @@ with open('model.pkl', 'rb') as f:
  model = pickle.load(f)
 @app.route('/')
 def home():
- return jsonify({'message': 'Sales Prediction API is running'})
+ return jsonify({'message': 'Sales Prediction API is running.'})
 @app.route('/predict', methods=['POST'])
 def predict():
  data = request.get_json()
