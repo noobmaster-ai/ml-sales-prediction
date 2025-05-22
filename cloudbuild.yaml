@@ -20,7 +20,7 @@ steps:
     entrypoint: 'gcloud'
     args:
       [
-        'run', 'deploy', 'cloud-run-app',
+        'run', 'deploy', 'cloud-run-app-saurabh',
         '--image', 'us-central1-docker.pkg.dev/$PROJECT_ID/sales-prediction-saurabh/cloud-run-app-saurabh:$SHORT_SHA',
         '--region', 'us-central1',
         '--platform', 'managed',
