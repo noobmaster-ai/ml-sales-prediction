@@ -12,7 +12,7 @@ with open('model.pkl', 'rb') as f:
 HTML_FORM = """
 <!doctype html>
 <title>Sales Predictor</title>
-<h2>Sales Prediction</h2>
+<h2>Sales Prediction Calculator</h2>
 <form method="post" action="/predict_web">
   <label for="features">Marketing Spend:</label><br><br>
   <input type="text" name="features" size="50"><br><br>
