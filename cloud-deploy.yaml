@@ -5,27 +5,30 @@ metadata:
 description: main application pipeline
 serialPipeline:
   stages:
-  - targetId: dev
+  - targetId: canary
     profiles: []
     strategy:
       canary:
         runtimeConfig:
           cloudRun:
             automaticTrafficControl: true
-          rolloutPercentage:
-            - percentage: 50
-              interval: 0s
-            - percentage: 100
-              interval: 60s
-        canaryDeployment:
-          predeploy:
-            actions: []
-          postdeploy:
-            actions: []
-          verify: false
-        advance:
-          approval: true
+        percentages: [50]
+  - targetId: dev
+    profiles: []
+    strategy:
+      standard:
+        verify: false
+    requiresApproval: true
 ---
+apiVersion: deploy.cloud.google.com/v1
+kind: Target
+metadata:
+  name: canary
+description: Canary Target
+run:
+  location: projects/faa-gcp-training-14-kfa-0808/locations/us-central1
+  service: cloud-run-app-saurabh
+
 apiVersion: deploy.cloud.google.com/v1
 kind: Target
 metadata:
