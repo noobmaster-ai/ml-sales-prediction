@@ -1,0 +1,36 @@
+apiVersion: deploy.cloud.google.com/v1
+kind: DeliveryPipeline
+metadata:
+  name: saurabh-canary-demo-app
+description: main application pipeline
+serialPipeline:
+  stages:
+  - targetId: dev
+    profiles: []
+    strategy:
+      canary:
+        runtimeConfig:
+          cloudRun:
+            automaticTrafficControl: true
+          rolloutPercentage:
+            - percentage: 50
+              interval: 0s
+            - percentage: 100
+              interval: 60s
+        canaryDeployment:
+          predeploy:
+            actions: []
+          postdeploy:
+            actions: []
+          verify: false
+        advance:
+          approval: true
+---
+apiVersion: deploy.cloud.google.com/v1
+kind: Target
+metadata:
+  name: dev
+description: dev Run Service
+run:
+  location: projects/faa-gcp-training-14-kfa-0808/locations/us-central1
+  service: cloud-run-app-saurabh

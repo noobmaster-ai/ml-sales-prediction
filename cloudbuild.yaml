@@ -37,7 +37,8 @@ steps:
         '--project=$PROJECT_ID',
         '--region=us-central1',
         '--delivery-pipeline=saurabh-canary-demo-app',
-        '--images=cloud-run-app-saurabh=us-central1-docker.pkg.dev/$PROJECT_ID/sales-prediction-saurabh/cloud-run-app-saurabh:$SHORT_SHA'
+        '--images=cloud-run-app-saurabh=us-central1-docker.pkg.dev/$PROJECT_ID/sales-prediction-saurabh/cloud-run-app-saurabh:$SHORT_SHA',
+        '--annotations=canary=50-50'
       ]
     id: 'Trigger Cloud Deploy'
 
